@@ -15,7 +15,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 function Copyright() {
   return (
@@ -30,14 +29,11 @@ function Copyright() {
   );
 }
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-// TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
+const cards = [1, 2, 3];
 
 export default function Album() {
   return (
-    <ThemeProvider theme={defaultTheme}>
+  <>
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
@@ -48,7 +44,6 @@ export default function Album() {
         </Toolbar>
       </AppBar>
       <main>
-        {/* Hero unit */}
         <Box
           sx={{
             bgcolor: "background.paper",
@@ -72,19 +67,8 @@ export default function Album() {
               color="text.secondary"
               paragraph
             >
-              Something short and leading about the collection below—its
-              contents, the creator, etc. Make it short and sweet, but not too
-              short so folks don&apos;t simply skip over it entirely.
+              Something short and leading about the collection below
             </Typography>
-            <Stack
-              sx={{ pt: 4 }}
-              direction="row"
-              spacing={2}
-              justifyContent="center"
-            >
-              <Button variant="contained">Main call to action</Button>
-              <Button variant="outlined">Secondary action</Button>
-            </Stack>
           </Container>
         </Box>
         <Container sx={{ py: 8 }} maxWidth="md">
@@ -123,7 +107,7 @@ export default function Album() {
                 </Card>
               </Grid>
             ))}
-          </Grid>
+          </Grid> 
         </Container>
       </main>
       {/* Footer */}
@@ -141,7 +125,6 @@ export default function Album() {
         </Typography>
         <Copyright />
       </Box>
-      {/* End footer */}
-    </ThemeProvider>
+    </>
   );
 }
