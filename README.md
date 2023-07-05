@@ -1,4 +1,22 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Git Etiquette
+
+## Branching
+- if the branch is for feature : feature/< feature name >
+- if the branch is for bugfix : bugfix/< bug name >
+
+## Committing
+- commit message should be descriptive eg:
+-> fixed < name > bug
+-> added < name > page
+-> added < name >
+-> removed < name >
+
+## Merging
+- All branches must be merged into dev branch first and then after to master branch.
+
+###
+
+## This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
