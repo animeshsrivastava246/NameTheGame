@@ -6,9 +6,13 @@
 
 ## Committing
 - commit message should be descriptive eg:
+- 
 -> fixed < name > bug
+  
 -> added < name > page
+
 -> added < name >
+
 -> removed < name >
 
 ## Merging
