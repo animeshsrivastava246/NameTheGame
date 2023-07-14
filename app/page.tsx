@@ -1,28 +1,36 @@
 "use client";
 import { useEffect, useState } from "react";
 import { db } from "@/firebase";
-import { onValue, ref } from "firebase/database";
+import { query, collection, onSnapshot } from "firebase/firestore";
 import styles from "./page.module.css";
 import { Typography } from "@mui/material";
 
 const Home = () => {
-	const [data, setData] = useState("");
+	const [data, setData] = useState<{ id: string }[]>([]);
 
 	useEffect(() => {
-		const getData = async () => {
-			const starCountRef = ref(db);
-			onValue(starCountRef, (snapshot) => {
-				const data = snapshot.val();
-				setData(data);
+		const q = query(collection(db, "posts"));
+		const unsubscricbe = onSnapshot(q, (querySnapshot) => {
+			let itemsArr: { id: string }[] = [];
+			querySnapshot.forEach((doc) => {
+				itemsArr.push({ ...doc.data(), id: doc.id });
 			});
-		};
-
-		getData();
+			setData(itemsArr);
+		});
 	}, []);
+	useEffect(() => {
+		console.log("data :>> ", data);
+	}, [data]);
+
 	return (
 		<main className={styles.main}>
 			<Typography align="center" variant="h1">
-				Hello World {data}
+				Hello World{" "}
+				{data.map((d) => (
+					<div key={d.id} className="">
+						<p>{d.id}</p>
+					</div>
+				))}
 			</Typography>
 		</main>
 	);
