@@ -4,36 +4,37 @@ import { db } from "@/firebase";
 import { query, collection, onSnapshot } from "firebase/firestore";
 import styles from "./page.module.css";
 import { Typography } from "@mui/material";
+import PostCard from "./components/PostCard";
+import { PostType } from "./types/postType";
 
 const Home = () => {
-	const [data, setData] = useState<{ id: string }[]>([]);
+  const [data, setData] = useState<PostType[]>([]);
 
-	useEffect(() => {
-		const q = query(collection(db, "posts"));
-		const unsubscricbe = onSnapshot(q, (querySnapshot) => {
-			let itemsArr: { id: string }[] = [];
-			querySnapshot.forEach((doc) => {
-				itemsArr.push({ ...doc.data(), id: doc.id });
-			});
-			setData(itemsArr);
-		});
-	}, []);
-	useEffect(() => {
-		console.log("data :>> ", data);
-	}, [data]);
+  useEffect(() => {
+    const q = query(collection(db, "posts"));
+    const unsubscricbe = onSnapshot(q, (querySnapshot) => {
+      let itemsArr: PostType[] = [];
+      querySnapshot.forEach((doc) => {
+        const da = doc.data() as PostType;
+        itemsArr.push({ ...da, id: doc.id });
+      });
+      setData(itemsArr);
+    });
+  }, []);
+  useEffect(() => {
+    console.log("data :>> ", data);
+  }, [data]);
 
-	return (
-		<main className={styles.main}>
-			<Typography align="center" variant="h1">
-				Hello World{" "}
-				{data.map((d) => (
-					<div key={d.id} className="">
-						<p>{d.id}</p>
-					</div>
-				))}
-			</Typography>
-		</main>
-	);
+  return (
+    <main className={styles.main}>
+      <h1>Name The Game</h1>
+      <div className={styles.posts_container}>
+        {data.map((d) => (
+          <PostCard key={d.id} post={d} />
+        ))}
+      </div>
+    </main>
+  );
 };
 
 export default Home;

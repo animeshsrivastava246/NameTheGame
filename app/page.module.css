@@ -1,0 +1,16 @@
+.main {
+}
+
+.main > h1 {
+  font-size: 75px;
+  text-shadow: 1px 5px 0px 0px var(--accent);
+  font-family: "Press Start 2P", cursive;
+}
+
+.main > .posts_container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1fr, 4);
+  align-items: center;
+  justify-items: center;
+}
