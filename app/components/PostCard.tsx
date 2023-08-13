@@ -1,45 +1,62 @@
-import React from "react";
 import { PostType } from "../types/postType";
 import {
-  Button,
   Card,
-  CardActions,
   CardContent,
+  CardHeader,
   CardMedia,
-  Grid,
   Typography,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 function PostCard({ post }: { post: PostType }) {
+  const theme = useTheme();
   return (
-    <Grid item xs={12} sm={6} md={4}>
-      <Card
-        sx={{
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
+    <Card
+      style={{
+        backgroundColor: theme.palette.primary.light,
+        color: theme.palette.primary.contrastText,
+      }}
+      sx={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <CardHeader
+        title={post.name}
+        subheader="10 mins ago | July 14, 2023"
+        style={{
+          borderBottom: `1px solid ${theme.palette.divider}`,
         }}
-      >
+      />
+      {post.image && post.image.length > 0 ? (
         <CardMedia
           component="div"
           sx={{
-            // 16:9
             pt: "56.25%",
           }}
           image={post.image}
         />
-        <CardContent sx={{ flexGrow: 1 }}>
-          <Typography gutterBottom variant="h5" component="h2">
-            {post.title}
-          </Typography>
-          <Typography>{post.description}</Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">View</Button>
-          <Button size="small">Edit</Button>
-        </CardActions>
-      </Card>
-    </Grid>
+      ) : null}
+      <CardContent sx={{ flexGrow: 1 }}>
+        <Typography gutterBottom variant="h5" component="h2">
+          {post.title}
+        </Typography>
+        <Typography
+          style={{
+            display: "inline-block",
+            width: "100%",
+            maxHeight: post.image && post.image.length > 0 ? "4rem" : "10rem",
+            textOverflow: "ellipsis",
+            overflow: "hidden",
+            whiteSpace: "break-spaces",
+          }}
+          variant="caption"
+        >
+          {post.description}
+        </Typography>
+      </CardContent>
+    </Card>
   );
 }
 
