@@ -1,4 +1,4 @@
-import { PostType } from "../types/postType";
+import { PostType } from "../../types/postType";
 import {
   Card,
   CardContent,
@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import styles from "./card.module.css";
 
 function PostCard({ post }: { post: PostType }) {
   const theme = useTheme();

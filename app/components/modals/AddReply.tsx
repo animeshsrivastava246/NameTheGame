@@ -6,6 +6,7 @@ import {
   DialogTitle,
   TextField,
 } from "@mui/material";
+import "./modals.css";
 
 function AddReply({
   isOpen,
@@ -16,7 +17,7 @@ function AddReply({
 }) {
   return (
     <Dialog
-      className="modal add-reply-modal"
+      className={`modal add-reply-modal`}
       open={isOpen}
       onClose={onClose}
       aria-labelledby={""}

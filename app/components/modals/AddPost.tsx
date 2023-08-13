@@ -4,6 +4,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
+import "./modals.css";
 
 function AddPost({
   isOpen,
@@ -14,7 +15,7 @@ function AddPost({
 }) {
   return (
     <Dialog
-      className="modal add-post-modal"
+      className={`modal add-post-modal`}
       open={isOpen}
       onClose={onClose}
       aria-labelledby={""}
